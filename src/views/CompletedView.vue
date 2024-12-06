@@ -46,8 +46,7 @@ const removeTodo = (index) => {
 
 <template>
   <div class="container">
-    <ToDoForm @add-item="addTodo" />
-    <ToDoList :items="todos" :is-done-filter="false" />
+    <ToDoList :items="todos" :is-done-filter="true" color="#28a745" />
   </div>
 </template>
 
