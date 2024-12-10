@@ -5,6 +5,9 @@ const visible = ref(false)
 
 const showDialog = ref(false)
 
+//Aqui tempos os props, os dados que esse componente filho ToDoItem
+//recebe do seu componente pai, ToDoList.
+
 const props = defineProps({
   todo: {
     type: Object,
@@ -12,6 +15,8 @@ const props = defineProps({
   },
 })
 
+
+//definimos um evento 'update-status'
 const emit = defineEmits(['update-status'])
 
 const selectTodo = ref({

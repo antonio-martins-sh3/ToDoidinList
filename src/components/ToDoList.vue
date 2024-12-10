@@ -19,15 +19,19 @@ const props = defineProps({
 
 const visible = ref(false)
 
-const emit = defineEmits(['remove-item'])
+const emit = defineEmits(['remove-item', 'update-item'])
 
 const remove = (index) => {
   emit('remove-item', index)
 }
 
+const selectedTodo = ref(null)
+const showDialog = ref(false)
+
+
+//Usado para inicializar o estado de um componente filho
 onMounted(() => {
-  // Example: Automatically show only "Not Done" items
-  filter.value.isDone = false // Change to true or null as needed
+  filter.value.isDone = false
 })
 
 const filter = ref({
@@ -47,11 +51,17 @@ const editTodo = (todo) => {
   console.log(todo)
 }
 
+const openTodoDialog = (todo) => {
+  selectedTodo.value = todo;
+  showDialog.value = true;
+};
+
+
 const handleUpdateStatus = (updatedTodo) => {
-  console.log('Updated Todo:', updatedTodo) // Handle updated todo in parent
+  console.log('Updated Todo:', updatedTodo) 
   const index = props.items.findIndex((item) => item.id === updatedTodo.id)
   if (index !== -1) {
-    props.items[index] = updatedTodo // Update the todo list
+    props.items[index] = updatedTodo 
   }
 }
 </script>
